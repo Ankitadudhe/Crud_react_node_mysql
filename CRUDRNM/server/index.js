@@ -45,7 +45,7 @@ app.get("/employees", (req, res) => {
 app.put("/update", (req, res) => {
   const id = req.body.id;
   db.query(
-    "UPDATE employees SET age = ? WHERE id = ?",
+    "UPDATE employees SET age = ? WHERE id = id",
     [ id],
     (err, result) => {
       if (err) {
