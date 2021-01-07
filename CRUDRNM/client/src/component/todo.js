@@ -6,10 +6,9 @@ function Todo(){
  const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [country, setCountry] = useState("");
-  // const [position, setPosition] = useState("");
-  // const [wage, setWage] = useState(0);
+ 
 
-  const [newWage, setNewWage] = useState(0);
+  const [newAge, setNewAge] = useState(0);
 
   const [employeeList, setEmployeeList] = useState([]);
 
@@ -38,26 +37,12 @@ function Todo(){
     });
   };
 
-  const updateEmployeeWage = (id) => {
-    Axios.put("http://localhost:3001/update", { id: id }).then(
-      (response) => {
-        setEmployeeList(
-          employeeList.map((val) => {
-            return val.id == id
-              ? {
-                  id: val.id,
-                  name: val.name,
-                  country: val.country,
-                  age: val.age,
-                 
-                }
-              : val;
-          })
-        );
-      }
-    );
-  };
-
+const updateEmployeeAge=(id)=>{
+  Axios.put("http://localhost:3001/update",{age:newAge,id:id}).then((response)=>{
+    alert("update");
+  })
+ 
+}
   const deleteEmployee = (id) => {
     Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
       setEmployeeList(
@@ -110,18 +95,14 @@ function Todo(){
                 <input
                   type="text"
                   placeholder=""
-                  onChange={(event) => {
-                    setNewWage(event.target.value);
+                  onChange={(event)=>{
+                    setNewAge(event.target.value)
                   }}
+                 
                 />
-                <button
-                  onClick={() => {
-                    updateEmployeeWage(val.id);
-                  }}
-                >
-                  {" "}
-                  Update
-                </button>
+            <button 
+            onClick={()=>{updateEmployeeAge(val.id)}}
+            >update</button>
 
                 <button
                   onClick={() => {
